@@ -1,0 +1,13 @@
+/* .App {
+  text-align: center;
+} */
+
+.app-name{
+  text-align: center;
+  font-family: Arial, sans serif; 
+
+}
+
+.current-user-navbar{
+  text-align: right;
+}
