@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import Navbar from './components/Navbar';
-import Aside from './components/Aside';
+import MenuBar from './components/MenuBar';
+import SideBar from './components/SideBar';
 import startups from './data/startupsStartupFactory';
 import Main from './components/Main';
 import pipelineData from './data/pipelineStartupFactory';
 
-import './App.css';
+import styles from './App.css';
 
 class App extends Component {
+  
   render() {
+    const sideBarClasses = `${styles.column} ${styles.left}`;
+    const mainClasses = `${styles.column} ${styles.right}`;
     return (
       <div className="App">
-        <Navbar currentUser="Marta" />
-        <Aside startups={startups}/>
-        <Main pipelineData={pipelineData} />
-      
+        <MenuBar currentUser="Marta" />
+        <div className={styles.row}>
+          <SideBar className={sideBarClasses} startups={startups} />
+          <Main className={mainClasses} pipelineData={pipelineData} />
+        </div>
       </div>
     );
   }
