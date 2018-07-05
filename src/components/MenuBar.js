@@ -4,6 +4,7 @@ const MenuBar = ({ currentUser }) => {
   let navStyle = {
     margin: 0,
     overflow: 'hidden',
+    borderStyle: 'groove'
   };
 
   let liTitleStyle = {
