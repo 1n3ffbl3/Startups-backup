@@ -1,33 +1,23 @@
 import React from 'react';
+import { Input, Menu } from 'semantic-ui-react'
 
 const MenuBar = ({ currentUser }) => {
-  let navStyle = {
-    margin: 0,
-    overflow: 'hidden',
-    borderStyle: 'groove'
-  };
-
-  let liTitleStyle = {
-    listStyleType: 'none',
-    display: 'inline-block',
-    paddingLeft: '30%',
-    fontSize: '36px'
-  };
-
-  let liUserStyle = {
-    listStyleType: 'none',
-    display: 'inline-block',
-    float: 'right',
-    paddingRight: '50px'
-  }
 
   return (
-    <nav style={navStyle}>
-      <ul>
-        <li style={liTitleStyle}>Startups Financial App</li>
-        <li style={liUserStyle}>Bonjour {currentUser}</li>
-      </ul>
-    </nav>
+    <Menu secondary>
+      <Menu.Item name='Startups Financial App' active={true} />
+      <Menu.Menu position='right'>
+        <Menu.Item
+          name='Bonjour {currentUser}'
+        />
+      </Menu.Menu>
+    </Menu>
+    // <nav>
+    //   <ul>
+    //     <li>Startups Financial App</li>
+    //     <li>Bonjour {currentUser}</li>
+    //   </ul>
+    // </nav>
   );
 }
 

@@ -18,7 +18,6 @@ let liSidBArStyle = {
     paddingRight: '20px',
     fontSize: '20px',
     fontWeight: 'bold'
-    
 };
     return(
         <div style={sideBarStyle}>

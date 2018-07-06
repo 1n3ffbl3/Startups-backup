@@ -3,8 +3,7 @@ import MenuBar from './components/MenuBar';
 import SideBar from './components/SideBar';
 import MainSection from './components/MainSection';
 import startups from './data/startupsStartupFactory';
-
-import styles from './App.css';
+import { Container, Grid, GridColumn } from 'semantic-ui-react'
 
 class App extends React.Component {
   constructor() {
@@ -24,12 +23,16 @@ class App extends React.Component {
     console.log('this.state', selectedStartup);
 
     return (
-      <div className="App">
+      <div>
         <MenuBar currentUser="Marta" />
-        <div className={styles.row}>
-          <SideBar startups={startups}  handleSelectedStartup={this.handleSelectedStartup}/>
-          <MainSection startupId={selectedStartup} />
-        </div>
+        <Grid>
+          <GridColumn width="3">
+            <SideBar startups={startups}  handleSelectedStartup={this.handleSelectedStartup}/>
+          </GridColumn>
+          <GridColumn width="13">
+            <MainSection startupId={selectedStartup} />
+          </GridColumn>
+        </Grid>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import pipelineData from '../data/pipelineStartupFactory';
 import startups from '../data/startupsStartupFactory';
 import Stages from './Stages';
+import { Container, GridRow, GridColumn, Grid, Table } from 'semantic-ui-react';
 
 export default class MainSection extends React.Component {
     constructor(props) {
@@ -46,19 +47,6 @@ export default class MainSection extends React.Component {
     }
 
     render(){
-    
-        let navPipeline = {
-            margin: 0,
-            overflow: 'hidden',
-            borderStyle: 'groove'
-          };
-
-        let liPipeline ={
-            display: 'inline-block',
-            paddingLeft: '30%',
-            fontSize: '25px'
-        }
-       
         const result = startups.filter(startup => startup._id === this.props.startupId)
         let currentStartup = null;
         if (result[0] !== undefined){
@@ -67,24 +55,55 @@ export default class MainSection extends React.Component {
 
         if (currentStartup === null){
             return (
-                <h3> No startup selected</h3>
+                <Container>
+                    <h3> No startup selected</h3>
+                </Container>
             )
         }else{
             return (
-                <div>
-                    <ul style={navPipeline}>
-                        {pipelineData.filter(pipe => pipe.startup === currentStartup.name).map(pipe => {
-                            return (
-                                <div style={liPipeline} key={pipe._id} onClick={() => this.handlePipelineSelection(pipe)}>
-                                    <h3>{pipe.pipeline}</h3>
-                                </div>
-                            )
-                        })}
-                    </ul>
-                    {!!this.state.currentPipeline &&
+                <Container>
+                    <Grid>
+                        <GridRow>
+                            <GridColumn width="2">
+                                <h3>Pipelines:</h3>
+                            </GridColumn>
+                            {pipelineData.filter(pipe => pipe.startup === currentStartup.name).map(pipe => {
+                                return (
+                                    <GridColumn key={pipe._id} onClick={() => this.handlePipelineSelection(pipe)}>
+                                        <h3>{pipe.pipeline}</h3>
+                                    </GridColumn>
+                                )
+                            })}    
+                        </GridRow>
+                    </Grid>
+                    <Table celled>
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.HeaderCell>Stages</Table.HeaderCell>
+                                <Table.HeaderCell>Previous Week</Table.HeaderCell>
+                                <Table.HeaderCell>Current Week</Table.HeaderCell>
+                                <Table.HeaderCell>Delta</Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Header>
+                        
+                        <Table.Body>
+                            { !!this.state.currentPipeline &&
+                                pipelineData
+                                    .filter(pipeline => pipeline._id === this.state.currentPipeline._id)[0]
+                                    .stages.map(stage => {
+                                        return (
+                                            <Table.Row>
+                                                <Table.Cell>{stage.name}</Table.Cell>
+                                            </Table.Row>
+                                        )
+                                    })
+                            }
+                        </Table.Body>
+                    </Table>
+                    {/* {!!this.state.currentPipeline &&
                         <Stages currentPipeline={this.state.currentPipeline}/>
-                    }  
-                </div>
+                    }   */}
+                </Container>
             )
         }
     }

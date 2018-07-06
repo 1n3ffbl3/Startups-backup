@@ -126,7 +126,7 @@ const pipelineData = [
         "_id": "59fb1c59fe096d21e1f02222",
         "startup": "sf",
         "__v": 0,
-        "weekNumber": 42,
+        "weekNumber": 43,
         "year": 2017,
         "timestamp": "2017-11-02T13:23:37.942Z",
         "stages": [
